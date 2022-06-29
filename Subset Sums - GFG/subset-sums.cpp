@@ -5,23 +5,29 @@ using namespace std;
  // } Driver Code Ends
 class Solution
 {
-public:
-    void func(int ind,int sum,vector<int>&arr,int N,vector<int>&sumSubset){
+    public:
+    void Sum(int ind,int sum,vector<int>&arr,int N,vector<int>&ds){
         if(ind==N){
-            sumSubset.push_back(sum);
-            return ;
+            ds.push_back(sum);
+            return;
         }
-        func(ind+1,sum+arr[ind],arr,N,sumSubset);
         
-        func(ind+1,sum,arr,N,sumSubset);
+        Sum(ind+1,sum+arr[ind],arr,N,ds);
+        
+       
+        Sum(ind+1,sum,arr,N,ds);
+        
+         
     }
+public:
     vector<int> subsetSums(vector<int> arr, int N)
     {
         // Write Your Code here
-        vector<int>sumSubset;
-        func(0,0,arr,N,sumSubset);
-        sort(sumSubset.begin(),sumSubset.end());
-        return sumSubset;
+        vector<int>ds;
+        
+        Sum(0,0,arr,N,ds);
+        sort(ds.begin(),ds.end());
+        return ds;
     }
 };
 
