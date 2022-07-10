@@ -1,17 +1,17 @@
 class Solution {
     
 public:
-    int dp[46];
-    int climbStairs(int n) {
-        
-        if(n==1||n==2)
-            return n;
-        if(dp[n]!=0)
-            return dp[n];
     
+    int climbStairs(int n) {
+        int prev = 1;
+        int prev2=1;
+        for(int i=2;i<=n;i++){
+            int curi = prev+prev2;
+            prev2 = prev;
+            prev = curi;
+        }
+        return prev;
         
-        dp[n]=climbStairs(n-1)+climbStairs(n-2);
-        return dp[n];
         
        
     }
