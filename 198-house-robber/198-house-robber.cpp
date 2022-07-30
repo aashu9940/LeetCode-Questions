@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // SPACE OPTIMIZATION
     int rob(vector<int>& nums) {
         int n = nums.size();
         
