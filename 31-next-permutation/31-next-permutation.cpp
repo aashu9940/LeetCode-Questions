@@ -18,7 +18,7 @@ public:
                }
             }
             swap(nums[i],nums[j]);
-            reverse(nums.begin()+1+i,nums.end());
+            reverse(nums.begin()+i+1,nums.end());
         }
         
         
