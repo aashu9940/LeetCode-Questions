@@ -11,14 +11,33 @@
  */
 class Solution {
 public:
-    TreeNode* prev=NULL;
+    TreeNode* prev = NULL;
+    
     void flatten(TreeNode* root) {
-        if(root==NULL)return;
-        flatten(root->right);
-        flatten(root->left);
-        
-        root->left = NULL;
-        root->right = prev;
-        prev = root;
+        TreeNode* curr = root;
+        while(curr!=NULL){
+            if(curr->left!=NULL){
+                prev = curr->left;
+            
+            while(prev->right){
+                prev= prev->right;
+            }
+            prev->right = curr->right;
+            curr->right = curr->left;
+            curr->left = NULL;
+        }
+        curr=curr->right;
     }
+    }
+    
+// approach1: intution is RIGHT LEFT ROOT;
+//     void flatten(TreeNode* root) {
+//         if(root==NULL)return;
+//         flatten(root->right);
+//         flatten(root->left);
+        
+//         root->left = NULL;
+//         root->right = prev;
+//         prev = root;
+//     }
 };
