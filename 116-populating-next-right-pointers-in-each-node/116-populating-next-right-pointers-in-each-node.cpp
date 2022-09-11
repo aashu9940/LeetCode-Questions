@@ -23,19 +23,21 @@ public:
         queue<Node*>q;
         q.push(root);
         while(!q.empty()){
-            int n= q.size();
+           
+            int n = q.size();
+            
             for(int i=1;i<=n;i++){
-                Node * curr = q.front();
+                Node* curr = q.front();
                 q.pop();
                 if(curr->left)q.push(curr->left);
                 if(curr->right)q.push(curr->right);
-                
-                if(i==n)curr->next=NULL;
+                if(i==n)curr->next = NULL;
                 else{
                     curr->next = q.front();
                 }
-            }
+             
         }
+    }
         return root;
     }
 };
