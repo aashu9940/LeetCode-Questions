@@ -5,16 +5,27 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   private:
-    bool dfs(int node,int parent,int vis[],vector<int>adj[],int V){
-        vis[node]=1;
-        for(auto it:adj[node]){
-            if(!vis[it]){
-                if((dfs(it,node,vis,adj,V)==true))return true;
-            }
-            else if(it!=parent)return true;
-        }
-            return false;
+    bool detect(int src,int parent,vector<int>adj[],int vis[]){
+        vis[src]=1;
+        queue<pair<int,int>>q;
+        q.push({src,-1});
         
+        while(!q.empty()){
+            int node = q.front().first;
+            int parent = q.front().second;
+            q.pop();
+            
+            for(auto it:adj[node]){
+                if(vis[it]==0){
+                    vis[it]=1;
+                    q.push({it,node});
+                }
+                else if(it!=parent){
+                    return true;
+                }
+            }
+        }
+        return false;
         
     }
   public:
@@ -22,12 +33,12 @@ class Solution {
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
         int vis[V]={0};
-        for(int i=0;i<V;i++){
-            if(!vis[i]){
-                if(dfs(i,-1,vis,adj,V)==true)return true;
-            }
+        for(int i=0;i<V;i++)
+        if(!vis[i]){
+            if(detect(i,-1,adj,vis))return true;
         }
         return false;
+        
     }
 };
 
